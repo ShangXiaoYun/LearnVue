@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件渲染</title>
+    <script src="./js/vue.min.js"></script>
+    <style>
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        .div {
+            height: 100px;
+            width: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v-if 和 v-else必须贴在一起，构成条件关系，否则会报错 -->
+        <h2 v-if="hot">文章</h2>
+        <h2 v-else>马伊琍</h2>
+
+        <!-- template模板标签，控制整个列表 -->
+        <template v-if="hot">
+            <ul>
+                <li>Sophie</li>
+                <li>Sophie</li>
+                <li>Sophie</li>
+                <li>Sophie</li>
+                <li>Sophie</li>
+                <li>Sophie</li>
+            </ul>
+        </template>
+
+        <!-- <template v-if="loginType">
+            <label for="">用户名:</label>
+            <input type="text" placeholder="请输入您的用户名">
+        </template>
+        <template v-else>
+            <label for="">邮箱:</label>
+            <input type="text" placeholder="请输入您的邮箱">
+        </template>
+        <button @click="switch">切换登录方式</button> -->
+
+        <br>
+        <br>
+        <button @click="toggle">显示隐藏</button>
+        <div class="div" v-show="show"></div>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                hot: true,
+                loginType: true,
+                show: true
+            },
+            methods: {
+                switch() {
+                    this.loginType = !this.loginType;
+                },
+                toggle() {
+                    this.show = !this.show;
+                }
+            }
+        });
+
+        /*
+            v-if与v-show的区别：
+            1、对template的支持
+                v-show不支持，v-if支持
+            2、元素隐藏的区别
+                v-if不会渲染元素，v-show不会渲染元素（靠display切换显示属性）
+            
+            如何选择：
+                1、如果从渲染的角度来说，v-if要比v-show性能好，如果台哦见很少变化就要用v-if
+                2、如果从显示与隐藏的角度来说，vv-show要比v-if性能好。如果要频繁的切换条件，就要使用v-show
+        */
+    </script>
+</body>
+
+</html>

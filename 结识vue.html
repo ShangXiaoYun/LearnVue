@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>结识vue</title>
+    <script src="./js/vue.min.js"></script>
+</head>
+
+<body>
+    <!-- 
+        库  小而美
+            1、把一些常用的功能封装成一个个函数或者对象，并放到一个js文件里。目的是简化原生js的操作，它是一个封装好的几何。
+        框架  大而全
+            2、一套架构，提供一套整体解决方案，它能完全搞定整个项目开发。并且很轻松就能解决复杂的问题，比较大，功能比较全。
+
+        1、 组件化
+        2、 响应式
+    -->
+    <div class="demo"></div>
+    <div id="app">{{name}}</div>
+
+    <script>
+        var div = document.querySelector(".demo");
+        var str = "Sophie";
+        div.innerHTML = str;
+
+        new Vue({
+            el: '#app',   //挂载在一个元素上
+            data: {
+                name: 'Sophia'
+            }
+        });
+        /*
+        MVC
+            M-Model 模型（数据）
+            V-View  视图（结构）
+            C-Controller  控制
+
+        MVVM   
+            M-Model 模型（数据）
+            V-View  视图（结构）
+            VM-ViewNodel  控制
+        */
+    </script>
+</body>
+
+</html>

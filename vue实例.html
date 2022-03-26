@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue实例</title>
+    <script src="./js/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                name: 'Sophie',
+                age: 18
+            },
+            //方法也直接代理在vm实例上
+            methods: {
+                add() {
+                    this.age++;
+                }
+            }
+        });
+        console.log(
+            vm.constructor === Vue,   //vm的老子是Vue
+            vm instanceof Vue,        //Vue的儿子是vm
+        );
+        console.log(vm);
+        console.log(vm.$el);
+        console.log(vm.$data);
+        //将data的内容挂在vm实例上
+        console.log(vm.name);
+
+    </script>
+</body>
+
+</html>

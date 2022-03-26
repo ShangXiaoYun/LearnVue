@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件</title>
+    <script src="./js/vue.min.js"></script>
+    <style>
+        .div {
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            margin-top: 20px;
+        }
+
+        .p {
+            width: 100px;
+            height: 100px;
+            background-color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" :value="age">
+        <button v-on:click="add('Sophie',$event)">加一岁</button>
+        <button @click="sub">减一岁</button>
+        <div class="div" @click="divClick">
+            <!-- 
+                阻止事件冒泡，用到stop修饰符，否则点击p标签的同时还会点击div标签 
+                .stop - 调用 event.stopPropagation()
+                .prevent - 调用 event.preventDefault() 阻止默认事件
+            -->
+            <p class="p" @click.stop="pClick"></p>
+        </div>
+        <div class="div">
+            <a href="https://gitee.com/sophie_shang" @click.prevent="aClick">个人码云</a>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                age: 18,
+            },
+            methods: {
+                // event事件对象
+                add(msg, ev) {
+                    this.age++
+                    console.log(ev);
+                    console.log(msg);
+                },
+                sub() {
+                    this.age--
+                },
+                divClick() {
+                    console.log('div点击了');
+                },
+                pClick() {
+                    console.log('p点击了');
+                },
+                aClick() {
+                    console.log('a点击了');
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

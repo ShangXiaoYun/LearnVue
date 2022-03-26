@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>插值</title>
+    <script src="./js/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Hi,{{name}}</h1>
+        <!-- 插值只会解析成一个文本字符串，不会解析成一个标签 -->
+        {{tag}}
+        <p></p>
+        <!-- 要用模板指令 -->
+        <div class="title" v-html="tag"></div>
+        <div>{{height+10}}</div>
+        <div>{{height.toString().split('').join('-')}}</div>
+        <h2>
+            Hi,{{name}}
+            <!-- 只要有v-pre，该标签及其包含的子标签都会直接跳过编译 -->
+            <span v-pre>180</span>
+        </h2>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                name: 'Sophie',
+                tag: '<h2>Sophia</h2>',
+                height: 180
+            }
+        });
+
+        document.querySelector('p').innerText = '<span>Sophie,你好美！</span>'
+        document.querySelector('p').innerHTML = '<span>Sophie,你好美！</span>'
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素与数据</title>
+    <script src="./js/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{name}}
+        <h2>{{age}}</h2>
+        <h2>{{wechart}}</h2>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            /*data: {
+                name: 'Sophie',
+                age: 18,
+            }*/
+            /*
+            这是第二种数据层表示方法，开发项目时会创建很多组件
+            第一种方法，（对象：引用地址） 一个组件修改了name值，其余组件的name值全部跟着修改了
+            第二种方法， 调用方法，return一个新的值，生成一个新的对象，互相之间不会干扰
+            */
+            /*
+            响应式：只能检测到已有的数据的变化，新增加数据检测不到
+            */
+            data() {
+                return {
+                    name: 'Sophie',
+                    age: 18,
+                    wechart: ''
+                }
+            }
+        });
+
+        console.log(vm.name);  //data中的值直接代理在vm上
+
+        console.log(vm.$data); //监听data中的变化，实时响应  {__ob__: we}
+    </script>
+</body>
+
+</html>

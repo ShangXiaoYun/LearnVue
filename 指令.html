@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>指令</title>
+    <script src="./js/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 在这种情况下，插值已经不管用了，因为插值一般填写标签值
+            当给属性赋值/绑定值时，就要使用指令
+            指令：v-bind 
+            参数：href  
+            指令和参数之间：连接
+            通过v-bind指令把gitee值绑定给a标签的href属性值
+            v-bind可以使用:缩写
+        -->
+
+        <!-- <a href="{{gitee}}">个人码云</a>
+        <input type="text" value="{{name}}"> -->
+        <!-- <a v-bind:href="gitee">个人码云</a>
+        <input type="text" v-bind:value="name"> -->
+        <a :href="gitee">个人码云</a>
+        <!-- 
+            中括号有attr属性，但是这个属性值有attr决定，如果是内容是id就是id，如果内容是class就是class
+            标签对大小写不敏感，会把大写转换成小写，因此优先写成小写
+        -->
+        <input type="text" :value="name" :[attr]="name">
+        <p :id="true? 'yes':'no'" v-on:click.once="cl">这个id为yes</p>
+    </div>
+    <script>
+        /*
+            指令：带有v-前缀的特殊属性
+            v-for  v-if
+            根据指令中表达式的值决定DOM中的渲染结果，但并不是所有指令都能添加参数 如v-pre
+            能添加参数的指令只有三个指令： v-bind  v-on  v-slot
+            只有三条指令可以缩写：v-bind(:) v-on(@) v-slot(#)
+
+            可以添加修饰符的指令有：v-bind  v-on   v-model
+            修饰符.once  只触发一次
+        */
+        new Vue({
+            el: "#app",
+            data: {
+                name: 'Sophie',
+                age: 18,
+                gitee: 'https://gitee.com/sophie_shang',
+                attr: 'class', //要绑定的属性是什么
+            },
+            methods: {
+                cl() {
+                    console.log('只会打印一次')
+                }
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
